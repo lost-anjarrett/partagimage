@@ -1,0 +1,38 @@
+<form id="drawingForm" method="post">
+    <canvas id="slate" class="slate" width="400px" height="300px"></canvas>
+    <div class="tools">
+        <!-- Effacer toute la zone de dessin -->
+        <button class="clear"><i class="fa fa-eraser"></i></button>
+        <!-- Changer la taille du trait -->
+        <select class="pen-size">
+            <option value="1">fin</option>
+            <option value="2">normal</option>
+            <option value="4">Epais</option>
+        </select>
+        <!-- Changer la couleur du trait -->
+        <div class="pen-color black active" data-color="black"></div>
+        <div class="pen-color maroon" data-color="#5C2121"></div>
+        <div class="pen-color red" data-color="#B9121B"></div>
+        <div class="pen-color yellow" data-color="#FFBD07"></div>
+        <div class="pen-color green" data-color="#13B813"></div>
+        <div class="pen-color seagreen" data-color="#029E9A"></div>
+        <div class="pen-color blue" data-color="#0378A6"></div>
+    </div>
+    <div>
+        <input
+            type="text"
+            name="title"
+            placeholder="Titre"
+            value="<?php if (isset($post)) { echo $post->getTitle(); } ?>">
+    </div>
+    <div>
+        <textarea name="description" rows="3" cols="80" maxlength="200" style="resize:none;" placeholder="Description"><?php if (isset($post)) { echo $post->getDescription(); } ?></textarea>
+    </div>
+    <input type="hidden" name="drawing">
+    <?php if (isset($post)) : ?>
+        <input type="hidden" name="drawing_src" value="<?= $post->getDrawingSrc() ?>">
+    <?php endif; ?>
+
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <input type="submit" value="Publier">
+</form>

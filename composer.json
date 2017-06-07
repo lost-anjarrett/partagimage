@@ -1,0 +1,16 @@
+{
+    "require": {
+        "silex/silex": "~2.0"
+    },
+    "autoload": {
+        "psr-4":
+        {
+            "Projet\\": "app",
+            "System\\": "system"
+        },
+        "files":
+        [
+            "app/helpers.php"
+        ]
+    }
+}

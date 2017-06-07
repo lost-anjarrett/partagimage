@@ -1,0 +1,11 @@
+<form method="post">
+    <input type="text" name="username" placeholder="Nom d'utilisateur">
+    <input type="password" name="password" placeholder="Mot de passe">
+    <input type="submit" value="Envoyer">
+</form>
+
+<?php if (isset($error)) : ?>
+    <div class="error">
+            <p><?= $error ?></p>
+    </div>
+<?php endif; ?>

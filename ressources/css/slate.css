@@ -1,0 +1,60 @@
+.slate {
+    box-shadow: 0 0 8px 1px #2C3E50;
+}
+
+.pen-color
+{
+    /* structure */
+    display: inline-block;
+    height: 14px;
+    position: relative;
+    top: 2px;
+    width: 14px;
+
+    /* presentation */
+    border-radius: 8px;
+    cursor: pointer;
+    border: transparent 2px solid;
+}
+
+.pen-color.active {
+    border: #000 2px solid;
+}
+
+.pen-color.black
+{
+    background-color: black;
+}
+.pen-color.blue
+{
+    background-color: #0378A6;
+}
+.pen-color.green
+{
+    background-color: #13B813;
+}
+.pen-color.maroon
+{
+    background-color: #5C2121;
+}
+.pen-color.red
+{
+    background-color: #B9121B;
+}
+.pen-color.seagreen
+{
+    background-color: #029E9A;
+}
+.pen-color.yellow
+{
+    background-color: #FFBD07;
+}
+
+.pen-color + .pen-color
+{
+    margin-left: 0.5em;
+}
+
+button {
+    cursor: pointer;
+}

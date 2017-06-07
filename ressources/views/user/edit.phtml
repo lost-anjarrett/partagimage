@@ -1,0 +1,36 @@
+<?php if ($success): ?>
+    <p><?= $success ?></p>
+<?php endif; ?>
+<form class="profile-editor" method="post">
+    <h4>Nom d'utilisateur</h4>
+    <input type="text" name="name" value="<?= $user->getName() ?>">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <input type="hidden" name="action" value="name">
+    <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+</form>
+
+<form class="profile-editor" method="post">
+    <h4>Email</h4>
+    <input type="email" name="email" value="<?= $user->getEmail() ?>">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <input type="hidden" name="action" value="email">
+    <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+</form>
+
+<form class="profile-editor" method="post">
+    <h4>Mot de passe</h4>
+    <input type="password" name="oldPassword" placeholder="Ancien mot de passe">
+    <input type="password" name="password" placeholder="Nouveau mot de passe">
+    <input type="password" name="confirmPassword" placeholder="Confirmer nouveau mot de passe">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    <input type="hidden" name="action" value="password">
+    <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+</form>
+
+<?php if ($errors): ?>
+    <div class="error">
+        <?php foreach ($errors as $error): ?>
+            <p><?= $error ?></p>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

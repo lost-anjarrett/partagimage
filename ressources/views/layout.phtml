@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><?= htmlentities($title) ?></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?= url('ressources/css/slider.css'); ?>">
+        <link rel="stylesheet" href="<?= url('ressources/css/slate.css'); ?>">
+        <link rel="stylesheet" href="<?= url('ressources/css/percent.css'); ?>">
+        <link rel="stylesheet" href="<?= url('ressources/css/main.css'); ?>">
+    </head>
+
+    <body>
+
+    <!-- L'en-tête -->
+    <header>
+        <h1><a href="<?= url('home') ?>">Le Partagimage !</a></h1>
+        <nav class="container">
+            <a class="float-left" href="<?= url('home') ?>">Accueil</a>
+            <a class="float-left" href="<?= url('post/create') ?>">Dessiner</a>
+            <?php if (isLogged()): ?>
+                <a class="float-right"  href="<?= url('logout') ?>">Déconnexion</a>
+                <a class="float-right"  href="<?= url('user/'. $_SESSION['userId']) ?>">Profil</a>
+            <?php else: ?>
+                <a class="float-right" href="<?= url('login') ?>">Connexion</a>
+                <a class="float-right" href="<?= url('register') ?>">S'inscrire</a>
+            <?php endif; ?>
+            <div class="clearfix"></div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <h2><?= htmlentities($title) ?></h2>
+        <?php include($template.'.phtml'); ?>
+
+    </main>
+
+    <!-- Le pied de page -->
+    <footer class="container">Copyright</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="<?= url('ressources/js/utilities.js'); ?>"></script>
+    <script src="<?= url('ressources/js/Slider.class.js'); ?>"></script>
+    <script src="<?= url('ressources/js/slate/Pen.class.js'); ?>"></script>
+    <script src="<?= url('ressources/js/slate/Slate.class.js'); ?>"></script>
+    <script src="<?= url('ressources/js/slate/Tools.class.js'); ?>"></script>
+    <script src="<?= url('ressources/js/Percent.class.js'); ?>"></script>
+    <script src="<?= url('ressources/js/main.js'); ?>"></script>
+
+    </body>
+</html>

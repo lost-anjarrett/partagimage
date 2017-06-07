@@ -1,0 +1,60 @@
+.hundred-percent {
+    display: inline-block;
+    border: 1px solid #adadad;
+    box-shadow: 0px 0px 4px #adadad;
+    border-radius: 4px;
+    width: 100px;
+}
+
+.percent {
+    height: 4px;
+    border-radius: 4px;
+    background-color: #76ee00;
+    width: 50%;
+    position: relative;
+}
+
+.percent-form {
+    padding: 15px;
+}
+
+.percent-form button {
+    font-size: 0.8rem;
+    margin-left: 8px;
+    padding: 0;
+}
+
+.cursor {
+    width: 4px;
+    height: 12px;
+    border-radius: 2px;
+    background-color: #76ee00;
+    position: absolute;
+    right: 0;
+    top:-4px;
+}
+
+.rating-info {
+    display: inline-block;
+    padding: 15px;
+    position: relative;
+}
+
+.rating-info:hover .change-note {
+    display:block;
+}
+
+.change-note {
+    border: 1px solid #adadad;
+    background-color: white;
+    display: none;
+    position: absolute;
+    padding: 5px 8px;
+    bottom: -15px;
+    right: 0px;
+}
+
+.change-note a {
+    font-size: 0.8rem;
+    text-decoration: none;
+}

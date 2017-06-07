@@ -1,0 +1,6 @@
+<?php if (isLogged()): ?>
+    <a href="<?= url('user/'. $_SESSION['userId']) ?>">Profil</a>
+    <a href="<?= url('logout') ?>">Déconnexion</a>
+<?php else: ?>
+    <a href="<?= url('login') ?>">Connexion</a>
+<?php endif; ?>
