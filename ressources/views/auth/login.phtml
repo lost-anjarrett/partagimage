@@ -1,11 +1,14 @@
-<form method="post">
-    <input type="text" name="username" placeholder="Nom d'utilisateur">
-    <input type="password" name="password" placeholder="Mot de passe">
-    <input type="submit" value="Envoyer">
-</form>
+<section>
+    <form class="center" method="post">
+        <input type="text" name="username" placeholder="Nom d'utilisateur">
+        <input type="password" name="password" placeholder="Mot de passe">
+        <input type="submit" value="Envoyer">
+    </form>
 
-<?php if (isset($error)) : ?>
-    <div class="error">
-            <p><?= $error ?></p>
-    </div>
-<?php endif; ?>
+    <?php if (isset($error)) : ?>
+        <div class="error center">
+                <p><?= $error ?></p>
+        </div>
+    <?php endif; ?>
+
+</section>

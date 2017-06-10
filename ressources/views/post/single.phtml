@@ -1,46 +1,51 @@
-<div class="post center">
-    <img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>">
-    <legend><i><?= $post->getDescription() ?></i></legend>
-    <p class="post-footer">Publié par <a href="<?= url('user/'.$post->getAuthorId()) ?>"><?= $post->getAuthor()->getName() ?></a> le <?= $post->getCreatedAt() ?></p>
-    <p><?php if ($post->getNbRatings() == 0): ?>
-        Pas de note pour l'instant
-        <?php else: ?>
-            Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
-    <?php endif; ?></p>
-    <?php if (isLogged()): ?>
-        <?php if ($post->isAuthor()): ?>
-            <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
-                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </form>
-            <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
-                <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-            </form>
+<section>
+    <div class="post center">
+        <img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>">
+        <legend><i><?= $post->getDescription() ?></i></legend>
+        <p class="post-footer">Publié par <a href="<?= url('user/'.$post->getAuthorId()) ?>"><?= $post->getAuthor()->getName() ?></a> le <?= $post->getCreatedAt() ?></p>
+        <p><?php if ($post->getNbRatings() == 0): ?>
+            Pas de note pour l'instant
+            <?php else: ?>
+                Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
+        <?php endif; ?></p>
+        <?php if (isLogged()): ?>
+            <?php if ($post->isAuthor()): ?>
+                <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                    <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </form>
+                <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
+                    <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                </form>
+            <?php endif; ?>
         <?php endif; ?>
+    </div>
+</section>
+
+<section>
+    <?php if (isLogged()): ?>
+        <form id="commentForm" class="center" method="post" action="<?= $post->getId() ?>/comment">
+            <textarea name="content" rows="3" cols="80" maxlength="300" placeholder="Tapez votre commentaire" style="resize:none;"></textarea>
+            <input type="submit" value="Envoyer">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+        </form>
+    <?php else: ?>
+        <div>connectez-vous pour commenter
+            <a href="<?= url('login') ?>">Connexion</a>
+        </div>
     <?php endif; ?>
-</div>
 
-<?php if (isLogged()): ?>
-    <form id="commentForm" class="center" method="post" action="<?= $post->getId() ?>/comment">
-        <textarea name="content" rows="3" cols="80" maxlength="300" placeholder="Tapez votre commentaire" style="resize:none;"></textarea>
-        <input type="submit" value="Envoyer">
-        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-    </form>
-<?php else: ?>
-    <div>connectez-vous pour commenter
-        <a href="<?= url('login') ?>">Connexion</a>
-    </div>
-<?php endif; ?>
+    <?php if ($comments) : ?>
+        <div class="list-comment">
+            <ul>
+                <?php foreach ($comments as $comment): ?>
+                    <li class="comment">
+                            <h5 class="comment-header"><?= $comment->getAuthor()->getName() ?> <small>le <?= $comment->getCreatedAt() ?></small></h5>
+                            <p><?= $comment->getContent() ?></p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-<?php if ($comments) : ?>
-    <div class="list-comment">
-        <ul>
-            <?php foreach ($comments as $comment): ?>
-                <li class="comment">
-                        <h5 class="comment-header"><?= $comment->getAuthor()->getName() ?> <small>le <?= $comment->getCreatedAt() ?></small></h5>
-                        <p><?= $comment->getContent() ?></p>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-<?php endif; ?>
+</section>

@@ -1,6 +1,12 @@
 html, body {
     line-height: 1.8;
     color: #0f1c1b;
+    font-family: 'Jaldi', sans-serif;
+}
+
+section + section {
+    border-top: 1px solid #0f1c1b;
+    margin-top: 40px;
 }
 
 .post-delete, .post-edit {
@@ -56,7 +62,15 @@ h1, h2 {
 }
 
 h1 {
-    /*font-size: rem;*/
+    font-family: 'Nixie One', cursive;
+}
+
+.taller {
+    font-size: 1.2em;
+}
+
+.smaller {
+    font-size: 0.8em;
 }
 
 .post img {
@@ -102,4 +116,9 @@ h1 {
 
 canvas, .slider img {
     background-color: #fff;
+}
+
+form input {
+    display: block;
+    margin: 15px auto;
 }

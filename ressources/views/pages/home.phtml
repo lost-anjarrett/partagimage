@@ -1,63 +1,68 @@
-<div id="homeSlider" class="slider">
-    <!-- Images du diaporama: -->
-    <?php foreach ($lastDrawings as $drawing): ?>
-        <a href="<?= url('post/'.$drawing->getId()) ?>"><img src="<?= $drawing->getDrawingSrc() ?>"></a>
-    <?php endforeach; ?>
-</div>
-<p>"Le Partagimage" est un site de partage de dessins réalisés en ligne avec la possiblité de les commenter et de les noter. Faisez-vous plaisir jeunes Gauguin, Banksi et autres fous du crayon digital !</p>
+<section>
+    <div id="homeSlider" class="slider">
+        <!-- Images du diaporama: -->
+        <?php foreach ($lastDrawings as $drawing): ?>
+            <a href="<?= url('post/'.$drawing->getId()) ?>"><img src="<?= $drawing->getDrawingSrc() ?>"></a>
+        <?php endforeach; ?>
+    </div>
+    <p>"Le Partagimage" est un site de partage de dessins réalisés en ligne avec la possiblité de les commenter et de les noter. <br>Faisez-vous plaisir jeunes Gauguin, Banksi et autres fous du crayon digital !</p>
+</section>
 
-<h3>Tous les posts</h3>
+<section>
+    <h3>Tous les posts</h3>
 
-<ul class="posts-list">
-    <?php foreach ($posts as $post): ?>
-        <li>
-            <div class="post">
-                <h4><a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getTitle() ?></a></h4>
-                <div>
-                    <div class="post-drawing">
-                        <a href="<?= url('post/'.$post->getId()) ?>">
-                            <img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>">
-                        </a>
-                        <legend><i><?= $post->getDescription() ?></i></legend>
-                    </div>
-                    <div class="post-infos">
-                        <p>Publié par <a href="<?= url('user/'.$post->getAuthorId()) ?>"><?= $post->getAuthor()->getName() ?></a>
-                            <br>
-                            le <?= $post->getCreatedAt() ?></p>
-                        <a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getNbComments(); ?> commentaire(s)</a>
-                        <p><?php if ($post->getNbRatings() == 0): ?>
-                            Pas de note pour l'instant
-                            <?php else: ?>
-                                Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
-                        <?php endif; ?></p>
-                        <?php if (isLogged()): ?>
-                            <?php if ($post->isAuthor()): ?>
-                                <div class="edit">
-                                    <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
-                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                                        <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                    <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
-                                        <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </form>
-                                </div>
-                            <?php endif; ?>
-                            <form class="percent-form" action="<?= url('post/'.$post->getId().'/rate') ?>" method="post">
-                                <h5>Notez ce dessin</h5>
-                                <div class="hundred-percent">
-                                    <div class="percent">
-                                        <div class="cursor"></div>
+    <ul class="posts-list">
+        <?php foreach ($posts as $post): ?>
+            <li>
+                <div class="post">
+                    <h4><a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getTitle() ?></a></h4>
+                    <div>
+                        <div class="post-drawing">
+                            <a href="<?= url('post/'.$post->getId()) ?>">
+                                <img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>">
+                            </a>
+                            <legend><i><?= $post->getDescription() ?></i></legend>
+                        </div>
+                        <div class="post-infos">
+                            <p>Publié par <a href="<?= url('user/'.$post->getAuthorId()) ?>"><?= $post->getAuthor()->getName() ?></a>
+                                <br>
+                                le <?= $post->getCreatedAt() ?></p>
+                            <a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getNbComments(); ?> commentaire(s)</a>
+                            <p><?php if ($post->getNbRatings() == 0): ?>
+                                Pas de note pour l'instant
+                                <?php else: ?>
+                                    Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
+                            <?php endif; ?></p>
+                            <?php if (isLogged()): ?>
+                                <?php if ($post->isAuthor()): ?>
+                                    <div class="edit">
+                                        <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
+                                            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                                            <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
+                                        <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
+                                            <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        </form>
                                     </div>
-                                </div>
-                                <input type="hidden" name="rating">
-                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                                <button type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
-                            </form>
-                        <?php endif; ?>
+                                <?php endif; ?>
+                                <form class="percent-form" action="<?= url('post/'.$post->getId().'/rate') ?>" method="post">
+                                    <h5>Notez ce dessin</h5>
+                                    <div class="hundred-percent">
+                                        <div class="percent">
+                                            <div class="cursor"></div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="rating">
+                                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                                    <button type="submit"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-        </li>
-    <?php endforeach; ?>
-</ul>
+                <hr>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+</section>

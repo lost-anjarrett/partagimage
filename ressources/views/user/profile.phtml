@@ -1,60 +1,66 @@
-<ul>
-    <li>Age : <?= $user->getAge() ?></li>
-    <li>Inscrit depuis le : <?=  $user->getCreatedAt() ?></li>
-</ul>
-<p>
-    Biographie :<br>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
-<?php if (isLogged()): ?>
-    <?php if ($user->isUser()): ?>
-        <form action="<?= url('user/'.$user->getId().'/edit') ?>" method="post">
-            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-            <button type="submit">Modifier votre Profil</button>
-        </form>
+<section>
+    <ul class="center">
+        <li>Age : <?= $user->getAge() ?></li>
+        <li>Inscrit depuis le : <?=  $user->getCreatedAt() ?></li>
+    </ul>
+    <p class="center">
+        Biographie :<br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <?php if (isLogged()): ?>
+        <?php if ($user->isUser()): ?>
+            <form class="center" action="<?= url('user/'.$user->getId().'/edit') ?>" method="post">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                <button type="submit">Modifier votre Profil</button>
+            </form>
+        <?php endif; ?>
     <?php endif; ?>
-<?php endif; ?>
+</section>
 
-<?php if ($posts): ?>
-    <h3>Liste des posts de <?= $user->getName() ?></h3>
-    <ul class="posts-list">
-        <?php foreach ($posts as $post): ?>
-            <li>
-                <div class="post">
-                    <h4><a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getTitle() ?></a></h4>
-                    <div>
-                        <div class="post-drawing">
-                            <a href="<?= url('post/'.$post->getId()) ?>"><img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>"></a>
-                            <legend><i><?= $post->getDescription() ?></i></legend>
-                        </div>
-                        <div class="post-infos">
-                            <p>Publié le <?= $post->getCreatedAt() ?></p>
-                            <p><?php if ($post->getNbRatings() == 0): ?>
-                                Pas de note pour l'instant
-                                <?php else: ?>
-                                    Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
-                            <?php endif; ?></p>
-                            <?php if (isLogged()): ?>
-                                <?php if ($post->isAuthor()): ?>
-                                    <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
-                                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                                        <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
-                                    <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
-                                        <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </form>
+<section>
+    <?php if ($posts): ?>
+        <h3>Liste des posts de <?= $user->getName() ?></h3>
+        <ul class="posts-list">
+            <?php foreach ($posts as $post): ?>
+                <li>
+                    <div class="post">
+                        <h4><a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getTitle() ?></a></h4>
+                        <div>
+                            <div class="post-drawing">
+                                <a href="<?= url('post/'.$post->getId()) ?>"><img src="<?= $post->getDrawingSrc() ?>" alt="<?= $post->getTitle() ?>"></a>
+                                <legend><i><?= $post->getDescription() ?></i></legend>
+                            </div>
+                            <div class="post-infos">
+                                <p>Publié le <?= $post->getCreatedAt() ?></p>
+                                <p><?php if ($post->getNbRatings() == 0): ?>
+                                    Pas de note pour l'instant
+                                    <?php else: ?>
+                                        Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
+                                <?php endif; ?></p>
+                                <?php if (isLogged()): ?>
+                                    <?php if ($post->isAuthor()): ?>
+                                        <div class="edit">
+                                            <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">
+                                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                                                <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </form>
+                                            <form action="<?= url('post/'.$post->getId().'/edit') ?>" method="post" class="post-edit">
+                                                <button type="submit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                            </form>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endif; ?>
-                            <?php endif; ?>
-                            <a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getNbComments(); ?> commentaire(s)</a>
+                                <a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getNbComments(); ?> commentaire(s)</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <h4>Aucun post publié</h4>
-<?php endif; ?>
+                    <hr>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <h4>Aucun post publié</h4>
+    <?php endif; ?>
 
-<a href="<?= url('home') ?>">Retour à l'acceuil'</a>
+</section>
+<a href="<?= url('home') ?>">Retour à l'accueil</a>

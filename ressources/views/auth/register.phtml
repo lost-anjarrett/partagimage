@@ -1,36 +1,40 @@
-<form id="register" method="post">
-    <input type="text" name="username" placeholder="Nom d'utilisateur">
-    <input type="email" name="email" placeholder="Email">
-    <input type="password" name="password" placeholder="Mot de passe">
-    <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe">
-    <div id="birthday">
-        <p>Date de naissance :</p>
-        <select id="day" name="day">
-            <?php for ($i=1; $i < 31 ; $i++) : ?>
-                <option><?= $i ?></option>
-            <?php endfor; ?>
-        </select>
-        /
-        <select id="month" name="month">
-            <?php $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-            foreach ($months as $index => $month) : ?>
-                <option value="<?= $index+1 ?>"><?= $month ?></option>
-            <?php endforeach; ?>
-        </select>
-        /
-        <select id="year" name="year">
-            <?php $thisYear = (new DateTime('NOW'))->format('Y');
-            for ($i= $thisYear; $i > 1920 ; $i--) : ?>
-                <option><?= $i ?></option>
-            <?php endfor; ?>
-        </select>
-    </div>
+<section>
+    <form id="register" class="center" method="post">
+        <input type="text" name="username" placeholder="Nom d'utilisateur">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Mot de passe">
+        <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe">
+        <div id="birthday">
+            <p>Date de naissance :</p>
+            <select id="day" name="day">
+                <?php for ($i=1; $i < 31 ; $i++) : ?>
+                    <option><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+            /
+            <select id="month" name="month">
+                <?php $months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+                foreach ($months as $index => $month) : ?>
+                    <option value="<?= $index+1 ?>"><?= $month ?></option>
+                <?php endforeach; ?>
+            </select>
+            /
+            <select id="year" name="year">
+                <?php $thisYear = (new DateTime('NOW'))->format('Y');
+                for ($i= $thisYear; $i > 1920 ; $i--) : ?>
+                    <option><?= $i ?></option>
+                <?php endfor; ?>
+            </select>
+        </div>
+
+        <input type="submit" value="Envoyer">
+    </form>
+
     <?php if (!empty($errors)) : ?>
-        <div class="error">
+        <div class="error center">
             <?php foreach ($errors as $error) :?>
                 <p><?= $error ?></p>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
-    <input type="submit" value="Envoyer">
-</form>
+</section>
