@@ -1,6 +1,5 @@
 html, body {
     line-height: 1.8;
-    /*background-color: #faf2ec;*/
     color: #0f1c1b;
 }
 
@@ -28,7 +27,7 @@ html, body {
 
 a {
     text-decoration: none;
-    color: #3a204f;
+    color:#0f1c1b;
     font-size: 1.25em;
 }
 
@@ -37,7 +36,6 @@ a:hover {
 }
 
 nav a {
-    color: #0f1c1b;
     padding: 10px;
 }
 
@@ -68,6 +66,10 @@ h1 {
 .post {
     padding: 10px 50px;
 }
+
+.post-infos a {
+    color: #20b2aa;
+}
 .post > div {
     display: flex;
     justify-content: space-between;
@@ -94,8 +96,8 @@ h1 {
     right: 10px;
 }
 
-.post img {
-    background: url('../img/paper-4.png') center;
+.post img, .slider img, .slate {
+    background: url('../img/wall-3.jpeg') center;
 }
 
 canvas, .slider img {

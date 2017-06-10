@@ -29,6 +29,11 @@
                         </div>
                         <div class="post-infos">
                             <p>Publié le <?= $post->getCreatedAt() ?></p>
+                            <p><?php if ($post->getNbRatings() == 0): ?>
+                                Pas de note pour l'instant
+                                <?php else: ?>
+                                    Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
+                            <?php endif; ?></p>
                             <?php if (isLogged()): ?>
                                 <?php if ($post->isAuthor()): ?>
                                     <form action="<?= url('post/'.$post->getId().'/delete') ?>" method="post" class="post-delete">

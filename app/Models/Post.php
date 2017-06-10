@@ -18,6 +18,7 @@ class Post extends Model
     protected $drawing_src;
     protected $nb_comments;
     protected $rating_avg;
+    protected $nb_ratings;
     protected $created_at;
     protected $updated_at;
 
@@ -75,6 +76,11 @@ class Post extends Model
     public function getRatingAvg()
     {
         return $this->rating_avg;
+    }
+
+    public function getNbRatings()
+    {
+        return $this->nb_ratings;
     }
 
     /**
@@ -136,6 +142,12 @@ class Post extends Model
     public function setRatingAvg($avg)
     {
         $this->rating_avg = $avg;
+        return $this;
+    }
+
+    public function setNbRatings($nb)
+    {
+        $this->nb_ratings = $nb;
         return $this;
     }
 

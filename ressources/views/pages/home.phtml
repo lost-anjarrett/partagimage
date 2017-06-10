@@ -25,6 +25,11 @@
                             <br>
                             le <?= $post->getCreatedAt() ?></p>
                         <a href="<?= url('post/'.$post->getId()) ?>"><?= $post->getNbComments(); ?> commentaire(s)</a>
+                        <p><?php if ($post->getNbRatings() == 0): ?>
+                            Pas de note pour l'instant
+                            <?php else: ?>
+                                Note moyenne : <?= $post->getRatingAvg() ?>% (<?= $post->getNbRatings() ?> note(s))
+                        <?php endif; ?></p>
                         <?php if (isLogged()): ?>
                             <?php if ($post->isAuthor()): ?>
                                 <div class="edit">

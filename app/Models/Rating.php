@@ -81,21 +81,31 @@ class Rating extends Model
         return round($avg['avg']);
     }
 
+    public function getNbRatings()
+    {
+        $count = $this->db->queryOne("SELECT COUNT(rating) AS nbr FROM ".static::TABLE." WHERE post_id = ?", [$this->post_id]);
+        return round($count['nbr']);
+    }
+
     public function create()
     {
         parent::create();
         $avg = $this->getAvg();
+        $count = $this->getNbRatings();
         (new Post)->find($this->post_id)
                 ->setRatingAvg($avg)
+                ->setNbRatings($count)
                 ->update();
     }
 
     public function update()
     {
         parent::update();
-        $avg = $this->getAvg($this->post_id);
+        $avg = $this->getAvg();
+        $count = $this->getNbRatings();
         (new Post)->find($this->post_id)
                 ->setRatingAvg($avg)
+                ->setNbRatings($count)
                 ->update();
     }
 }
