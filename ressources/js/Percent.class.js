@@ -12,7 +12,7 @@ var Percent = function(selector) {
 
 
     this.form.after(this.ratingInfo);
-    this.setValue();
+    this.setFirstValue();
 
     this.container.mousedown(this.onMouseDown.bind(this));
     this.container.mousemove(this.onMouseMove.bind(this));
@@ -22,6 +22,12 @@ var Percent = function(selector) {
     this.form.submit(this.submitRating.bind(this));
 
     this.ratingInfo.on('click', '.change-note a', this.rateAgain.bind(this));
+}
+
+Percent.prototype.setFirstValue = function () {
+    var val = this.ratingInput.val();
+    if (val !== '') this.percent.css('width', (val*this.containerWidth/100)+'px');
+    this.setValue();
 }
 
 Percent.prototype.setValue = function () {

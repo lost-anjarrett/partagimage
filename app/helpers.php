@@ -47,3 +47,8 @@ function verifyToken()
 {
     if ($_SESSION['csrf_token'] != $_POST['csrf_token']) die('Jeton de session invalide');
 }
+
+function hasRated($postId)
+{
+    return array_key_exists($postId, $_SESSION['rated']);
+}

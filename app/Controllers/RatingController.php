@@ -18,6 +18,9 @@ class RatingController extends Controller
 
             $checkedRate = $postedRate->checkIfRated();
 
+            $SESSION['rated'][$id] = $rating;
+
+
             if ($checkedRate) {
                 $checkedRate->setRating($rating)->update();
             }
@@ -26,11 +29,11 @@ class RatingController extends Controller
             }
             ob_start();
             include(__DIR__.'/../../ressources/views/rating/rate_result.phtml');
-            $view = ob_get_contents();
+            $response = ob_get_contents();
 
             ob_get_clean();
 
-            return $view;
+            return $response;
         }
 
         return 'une erreur s\'est produite';

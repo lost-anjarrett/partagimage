@@ -2,6 +2,7 @@
 namespace Projet\Controllers;
 
 use Projet\Models\Post;
+use Projet\Models\Rating;
 use \System\Controller;
 
 class PageController extends Controller

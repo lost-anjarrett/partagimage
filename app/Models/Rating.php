@@ -87,6 +87,18 @@ class Rating extends Model
         return round($count['nbr']);
     }
 
+    public function getRatedByAuthorId($author_id)
+    {
+        $results =  $this->db->query("SELECT post_id, rating FROM ".static::TABLE." WHERE author_id = ?", [$author_id]);
+        $posts = [];
+        $ratings = [];
+        foreach ($results as $result) {
+            $posts[] = $result["post_id"];
+            $ratings[] = $result["rating"];
+        }
+        return array_combine($posts, $ratings);
+    }
+
     public function create()
     {
         parent::create();
