@@ -6,9 +6,8 @@
             <a href="<?= url('post/'.$drawing->getId()) ?>"><img src="<?= $drawing->getDrawingSrc() ?>"></a>
         <?php endforeach; ?>
     </div>
-    <p>"Le Partagimage" est un site de partage de dessins réalisés en ligne avec la possiblité de les commenter et de les noter. <br>Faisez-vous plaisir jeunes Gauguin, Banksi et autres fous du crayon digital !</p>
+    <p>"Le Partagimage" est un site de partage de dessins réalisés en ligne avec la possiblité de les commenter et de les noter. <br>Faisez-vous plaisir jeunes Matisse, Basquiat et autres fous du crayon digital !</p>
 </section>
-<pre><?php var_dump($_SESSION); ?></pre>
 
 <!-- Posts -->
 <section>
@@ -53,7 +52,11 @@
                                 <?php endif; ?>
                                 <!-- Rating -->
                                 <form class="percent-form" action="<?= url('post/'.$post->getId().'/rate') ?>" method="post">
-                                    <h5>Notez ce dessin</h5>
+                                    <?php if (hasRated($post->getId())): ?>
+                                        <h5>Modifier votre note</h5>
+                                    <?php else: ?>
+                                        <h5>Notez ce dessin</h5>        
+                                    <?php endif; ?>
                                     <div class="hundred-percent">
                                         <div class="percent"><div class="cursor"></div>
                                         </div>

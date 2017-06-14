@@ -15,13 +15,13 @@
 
     <!-- L'en-tête -->
     <header>
-        <h1><a href="<?= url('home') ?>">L<span class="smaller">e</span> P<span class="smaller">a</span>rt<span class="smaller">a</span>g<span class="taller">i</span>m<span class="smaller">a</span>g<span class="smaller">e</span> !</a></h1>
+        <h1><a href="<?= url('home') ?>">L<span class="small">e</span> P<span class="small">a</span>rt<span class="small">a</span>g<span class="tall">i</span>m<span class="small">a</span>g<span class="small">e</span> !</a></h1>
         <nav class="container">
             <a class="float-left" href="<?= url('home') ?>">Accueil</a>
             <a class="float-left" href="<?= url('post/create') ?>">Dessiner</a>
             <?php if (isLogged()): ?>
                 <a class="float-right"  href="<?= url('logout') ?>">Déconnexion</a>
-                <a class="float-right"  href="<?= url('user/'. $_SESSION['userId']) ?>">Profil</a>
+                <a class="float-right"  href="<?= url('user/'. $_SESSION['userId']) ?>"><?= $_SESSION['username'] ?></a>
             <?php else: ?>
                 <a class="float-right" href="<?= url('login') ?>">Connexion</a>
                 <a class="float-right" href="<?= url('register') ?>">S'inscrire</a>

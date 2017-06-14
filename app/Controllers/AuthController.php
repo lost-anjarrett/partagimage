@@ -64,6 +64,7 @@ class AuthController extends Controller
             if(!isset($error)) {
                 session_start();
                 $_SESSION['userId'] = $user->getId();
+                $_SESSION['username'] = $user->getName();
                 $_SESSION['rated'] = (new Rating)->getRatedByAuthorId($user->getId());
                 $_SESSION['csrf_token'] = randString(50);
                 $this->redirect('home');

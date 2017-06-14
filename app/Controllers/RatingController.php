@@ -18,14 +18,17 @@ class RatingController extends Controller
 
             $checkedRate = $postedRate->checkIfRated();
 
-            $SESSION['rated'][$id] = $rating;
+            $_SESSION['rated'][$id] = $rating;
+
 
 
             if ($checkedRate) {
                 $checkedRate->setRating($rating)->update();
+                $status = 'modifiée';
             }
             else {
                 $postedRate->setRating($rating)->create();
+                $status = 'enregistrée';
             }
             ob_start();
             include(__DIR__.'/../../ressources/views/rating/rate_result.phtml');

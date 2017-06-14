@@ -1,34 +1,21 @@
+/**************GLOBALS**************/
+
 html, body {
     line-height: 1.8;
     color: #0f1c1b;
     font-family: 'Jaldi', sans-serif;
 }
 
-section + section {
-    border-top: 1px solid #0f1c1b;
-    margin-top: 40px;
+h1, h2, h3 {
+    text-align: center;
 }
 
-.post-delete, .post-edit {
-    display: inline-block;
+h1, h2 {
+    text-transform: uppercase;
 }
 
-.container {
-    max-width: 850px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.float-left {
-    float:left;
-}
-
-.float-right {
-    float:right;
-}
-
-.clearfix {
-    clear: both;
+h1 {
+    font-family: 'Nixie One', cursive;
 }
 
 a {
@@ -53,25 +40,59 @@ ul {
     list-style: none;
 }
 
-h1, h2, h3 {
+section + section {
+    border-top: 1px solid #0f1c1b;
+    margin-top: 40px;
+}
+
+canvas, .slider img {
+    background-color: #fff;
+}
+
+form input {
+    display: block;
+    margin: 15px auto;
+}
+
+
+/**************HELPERS**************/
+
+.container {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center {
     text-align: center;
 }
 
-h1, h2 {
-    text-transform: uppercase;
+.error p {
+    background-color: #e6594e;
+    padding: 5px;
 }
 
-h1 {
-    font-family: 'Nixie One', cursive;
-}
-
-.taller {
+.tall {
     font-size: 1.2em;
 }
 
-.smaller {
+.small {
     font-size: 0.8em;
 }
+
+.float-left {
+    float:left;
+}
+
+.float-right {
+    float:right;
+}
+
+.clearfix {
+    clear: both;
+}
+
+/**************POSTS**************/
 
 .post img {
     box-shadow: 0px 0px 10px dimgrey;
@@ -95,13 +116,8 @@ h1 {
     position: relative;
 }
 
-.center {
-    text-align: center;
-}
-
-.error p {
-    background-color: #e6594e;
-    padding: 5px;
+.post-delete, .post-edit {
+    display: inline-block;
 }
 
 .edit {
@@ -112,13 +128,4 @@ h1 {
 
 .post img, .slider img, .slate {
     background: url('../img/wall-3.jpeg') center;
-}
-
-canvas, .slider img {
-    background-color: #fff;
-}
-
-form input {
-    display: block;
-    margin: 15px auto;
 }
